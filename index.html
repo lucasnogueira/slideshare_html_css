@@ -1,0 +1,882 @@
+<!--
+
+    So you'd like to know how to use impress.js?
+
+    You've made the first, very important step - you're reading the source code.
+    And that's how impress.js presentations are built - with HTML and CSS code.
+
+    Believe me, you need quite decent HTML and CSS skills to be able to use impress.js effectively.
+    And what is even more important, you need to be a designer, too, because there are no default
+    styles for impress.js presentations, there is no default or automatic layout for them.
+
+    You need to design and build it by hand.
+
+    So...
+
+    Would you still like to know how to use impress.js?
+
+-->
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Cap 3 e 4| Estudando HTML e CSS </title>
+
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <!--
+
+        Impress.js doesn't depend on any external stylesheet. Script adds all styles it needs for
+        presentation to work.
+
+        This style below contains styles only for demo presentation. Browse it to see how impress.js
+        classes are used to style presentation steps, or how to apply fallback styles, but I don't want
+        you to use them directly in your presentation.
+
+        Be creative, build your own. We don't really want all impress.js presentations to look the same,
+        do we?
+
+        When creating your own presentation get rid of this file. Start from scratch, it's fun!
+
+    -->
+    <link href="css/impress-demo.css" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="favicon.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+</head>
+
+<!--
+
+    Body element is used by impress.js to set some useful class names, that will allow you to detect
+    the support and state of the presentation in CSS or other scripts.
+
+    First very useful class name is `impress-not-supported`. This class means, that browser doesn't
+    support features required by impress.js, so you should apply some fallback styles in your CSS.
+    It's not necessary to add it manually on this element. If the script detects that browser is not
+    good enough it will add this class, but keeping it in HTML means that users without JavaScript
+    will also get fallback styles.
+
+    When impress.js script detects that browser supports all required features, this class name will
+    be removed.
+
+    The class name on body element also depends on currently active presentation step. More details about
+    it can be found later, when `hint` element is being described.
+
+-->
+<body class="impress-not-supported">
+
+<!--
+    For example this fallback message is only visible when there is `impress-not-supported` class on body.
+-->
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<!--
+
+    Now that's the core element used by impress.js.
+
+    That's the wrapper for your presentation steps. In this element all the impress.js magic happens.
+    It doesn't have to be a `<div>`. Only `id` is important here as that's how the script find it.
+
+    You probably won't need it now, but there are some configuration options that can be set on this element.
+
+    To change the duration of the transition between slides use `data-transition-duration="2000"` giving it
+    a number of ms. It defaults to 1000 (1s).
+
+    You can also control the perspective with `data-perspective="500"` giving it a number of pixels.
+    It defaults to 1000. You can set it to 0 if you don't want any 3D effects.
+    If you are willing to change this value make sure you understand how CSS perspective works:
+    https://developer.mozilla.org/en/CSS/perspective
+
+    But as I said, you won't need it for now, so don't worry - there are some simple but interesing things
+    right around the corner of this tag ;)
+
+-->
+<div id="impress">
+
+    <!--
+
+        Here is where interesting thing start to happen.
+
+        Each step of the presentation should be an element inside the `#impress` with a class name
+        of `step`. These step elements are positioned, rotated and scaled by impress.js, and
+        the 'camera' shows them on each step of the presentation.
+
+        Positioning information is passed through data attributes.
+
+        In the example below we only specify x and y position of the step element with `data-x="-1000"`
+        and `data-y="-1500` attributes. This means that **the center** of the element (yes, the center)
+        will be positioned in point x = -1000px and y = -1500px of the presentation 'canvas'.
+
+        It will not be rotated or scaled.
+
+    -->
+    <div id="begin" class="step slide" data-x="-1000" data-y="-1500">
+      <q>Avançando no HTML e CSS</q>
+      <q>Mais HTML e CSS</q>
+      <q>Capítulos 3 e 4</q>
+    </div>
+
+    <!--
+
+        The `id` attribute of the step element is used to identify it in the URL, but it's optional.
+        If it is not defined, it will get a default value of `step-N` where N is a number of slide.
+
+        So in the example below it'll be `step-2`.
+
+        The hash part of the url when this step is active will be `#/step-2`.
+
+        You can also use `#step-2` in a link, to point directly to this particular step.
+
+        Please note, that while `#/step-2` (with slash) would also work in a link it's not recommended.
+        Using classic `id`-based links like `#step-2` makes these links usable also in fallback mode.
+
+    -->
+    <div class="step slide" data-x="0" data-y="-1500">
+      <p>Patrocinado por:</p>
+      <q style="text-align: center;">Praia Grande</q>
+      <img src="images/praia_grande.jpg" alt="Praia Grande" style="float:right; padding-top:80px"/>
+      <q>Sempre um lugar para você (não no verão)</q>
+    </div>
+
+    <div class="step slide" data-x="1000" data-y="-1500">
+      <q>A Análise do Layout</q>
+      <q>Antes de pensar em começar a escrever qualquer linha de código é necessário analisar e definir as principais áreas da página que será feita.</q>
+    </div>
+
+    <div class="step slide" data-x="2000" data-y="-2500">
+      <q>Para isso é importante ter em mente que o HTML é exibido no navegador de acordo com a ordem de leitura do idioma da página.</q>
+    </div>
+
+
+    <div class="step slide" data-x="2000" data-y="-1500">
+      <q>Por exemplo, ao lermos qualquer texto em português, começamos a ler de cima para baixo, atacando cada linha da esquerda para direita. Funciona igual para os navegadores.</q>
+    </div>
+
+    <div class="step slide" data-x="3000" data-y="-4500">
+      <q>Lembrando que existem elementos que são renderizados em bloco, ou seja, ocupam toda a largura da página, e elementos renderizados em linha, que ocupa somente o espaço do seu conteúdo.</q>
+    </div>
+
+    <div class="step slide" data-x="4000" data-y="-5500">
+      <q>Vamos lá? :)</q>
+    </div>
+    <!--
+
+        This is an example of step element being scaled.
+
+        Again, we use a `data-` attribute, this time it's `data-scale="4"`, so it means that this
+        element will be 4 times larger than the others.
+        From presentation and transitions point of view it means, that it will have to be scaled
+        down (4 times) to make it back to it's correct size.
+
+    -->
+    <div id="title" class="step" data-x="0" data-y="0" data-scale="3">
+      <p>
+        Html Semântico
+      </p>
+        <p>
+          Antes do HTML5 seria normal definirmos as seções do nosso layout por meio de várias &lt;div&gt; representando o rodapé ou a parte de conteúdo da nossa página.
+          Porém, com o HTML5 podemos utilizar algumas tags próprias, separando assim nossa página em &lt;header&gt;, &lt;section&gt; e &lt;footer&gt;.
+        </p>
+    </div>
+
+
+    <div id="title2" class="step" data-x="0" data-y="3000" data-scale="1">
+        <p>
+          Porém, com o HTML5 podemos utilizar algumas tags próprias, separando assim nossa página em &lt;header&gt;, &lt;section&gt; e &lt;footer&gt;.
+        </p>
+    </div>
+
+    <div id="title3" class="step" data-x="0" data-y="3500" data-scale="1">
+        <p>
+          Facilitam assim a manutenção do documento e o entendimento da página pelos sistemas de busca como o Google e Bing.
+        </p>
+    </div>
+
+   <div id="title4" class="step" data-x="0" data-y="4000" data-scale="1">
+        <p>
+          &lt;header&gt; = cabeçalho
+        </p>
+        <p>
+          &lt;footer&gt; = rodapé
+        </p>
+        <p>
+          &lt;section&gt; = conteúdo
+        </p>
+        <p>
+          &lt;nav&gt; = bloco de navegação primário
+        </p>
+    </div>
+
+     <div id="title5" class="step" data-x="0" data-y="4500" data-scale="1">
+        <p>
+          &lt;h1&gt; é responsável pelo título/logo da página, sendo utilizada pelos sistemas de busca que a associam com a página.
+        </p>
+        <p>
+          Como colocar uma imagem então mas associar o título com um texto?
+        </p>
+    </div>
+
+     <div id="title6" class="step" data-x="0" data-y="5000" data-scale="1">
+        <p>
+          Precisamos inserir uma imagem na tag, fazer com que a tag tenha o tamanho da imagem e omitir o texto que será associado.
+        </p>
+    </div>
+
+    <div id="code1" class="step" data-x="-500" data-y="5000" data-rotate="120" data-scale="0.001">
+      <pre><code class="small_font">
+        header h1 {
+          /* aqui iremos colocar o tamanho do elemento h1 igual ao tamanho da imagem */
+          height: 100px;
+          width: 225px;
+
+          /* agora iremos inserir a imagem como plano de fundo do elemento h0 */
+          background-image: url(logo.png);
+
+          /* por fim iremos esconder o texto */
+          text-indent: -9999px;
+        }
+     </code></pre>
+  </div>
+
+   <div id="title7" class="step" data-x="0" data-y="5500" data-scale="1">
+        <p>
+          Note que ao utilizar a tag &lt;img&gt; não seria necessário nenhuma implementação extra, visto que a mesma possui um atributo denominado alt=, que fica responsável por renderizar um texto alternativo caso a imagem não esteja disponível ou quando a página é acessada por um cliente não visual.
+        </p>
+    </div>
+
+  <div id="class_id" class="step" data-x="10000" data-y="0" data-scale="1">
+        <p>
+          Classes ou Ids?
+        </p>
+      </div>
+
+      <div id="class_id2" class="step" data-x="10000" data-y="200" data-scale="1">
+        <p>
+          Podemos utilizar 2 seletores no nosso CSS para nos ajudar a estilizar a página: class e id.
+        </p>
+      </div>
+
+      <div id="class_id3" class="step" data-x="10000" data-y="600" data-scale="1">
+        <p>
+          A diferença básica entre um e outro é que o id deve ser único por página, ou seja, nenhum outro elemento da nossa página <strong>inteira</strong> pode possuir o mesmo valor para esse atributo.
+        </p>
+      </div>
+
+    <div id="class_id4" class="step" data-x="10000" data-y="1100" data-scale="1">
+      <p>
+        Enquanto que class pode ser repetida em todos os elementos da página caso desejar.
+      </p>
+      <p>
+        Dessa forma, utilizando class podemos reutilizar o código com muito mais facilidade.
+      </p>
+    </div>
+
+
+    <div id="cssreset" class="step" data-x="11000" data-y="0" data-scale="1">
+      <p>
+        Quando nenhum estilo é especificado para os elementos HTML o navegador acaba por utilizar diversos estilos padrões, que são diferentes de navegador para navegador.
+      </p>
+    </div>
+
+    <div id="cssreset2" class="step" data-x="11000" data-y="500" data-scale="1">
+      <p>
+        Isso pode acarretar problemas ao longo do tempo, visto que algumas inconsistências de layout podem surgir entre diferentes navegadores.
+      </p>
+    </div>
+
+    <div id="cssreset3" class="step" data-x="11000" data-y="1000" data-scale="1">
+      <p>
+        Para que esse tipo de problema não ocorra foram criados alguns estilos base chamados de CSS Reset, que consiste em definir um valor básico para todas as características do CSS, substituindo os valores padrões do navegador.
+      </p>
+    </div>
+
+    <div id="cssreset4" class="step" data-x="11000" data-y="2000" data-scale="0.01" data-rotate="260">
+      <p>
+        Os mais famosos são:
+      </p>
+      <ul>
+      <li><a href="http://html5boilerplate.com/">HTML5 BoilerPlate</a></li>
+      <li><a href="http://yuilibrary.com/yui/docs/cssreset/">Yui CSS Reset</a></li>
+      <li><a href="http://meyerweb.com/eric/tools/css/reset/">Eric Meyer CSS Reset</a></li>
+    </ul>
+    </div>
+
+    <div id="change_display" class="step" data-x="12000" data-y="0000" data-scale="3" data-rotate="127">
+      <span class="footnote">Alterando elementos block e inline</span>
+    </div>
+
+    <div id="change_display1" class="step" data-x="12000" data-y="0200" data-scale="1" data-rotate="127">
+      <p>
+        Alguns elementos do HTML são do tipo block, enquanto outros são do tipo inline.
+      </p>
+    </div>
+
+    <div id="change_display2" class="step" data-x="12000" data-y="500" data-scale="1">
+      <p>
+        Porém, algumas vezes pode ser interessante e necessário utilizar esses elementos com uma renderização diferente.
+      </p>
+    </div>
+
+    <div id="change_display3" class="step" data-x="12000" data-y="1000" data-scale="1">
+      <p>
+         Para isso, basta utilizarmos o atributo display no arquivo de CSS. Pegando por exemplo o elemento &lt;li&gt; de uma &lt;ul&gt;, podemos definir:
+      </p>
+    </div>
+
+    <div id="change_display4" class="step" data-x="12000" data-y="2000" data-scale="0.01" data-rotate="73">
+      <pre><code class="small_font">
+        ul li {
+        display: inline;
+        }
+      </code></pre>
+  </div>
+
+    <div id="postion" class="step" data-x="13000" data-y="0000" data-scale="3" data-rotate="127">
+      <span class="footnote">Posicionamento</span>
+    </div>
+
+    <div id="position2" class="step" data-x="13000" data-y="0200" data-scale="1">
+      <p>
+        É possível utilizar propriedades de coordenada para posicionar um elemento na página, como por exemplo, <i>top, bottom</i> e <i>right</i>.
+      </p>
+    </div>
+
+    <div id="position3" class="step" data-x="13000" data-y="0600" data-scale="1">
+      <p>
+        Mas para que elas funcionem é necessário acrescentar um atributo ao elemento: position. Esse atributo ainda pode receber alguns valores, como <i>static, relative, absolute</i> ou <i>fixed</i>.
+      </p>
+    </div>
+
+    <div id="position4" class="step" data-x="13000" data-y="2000" data-scale="2" data-rotate="200">
+      <p>
+        Static
+      </p>
+    </div>
+
+    <div id="position5" class="step" data-x="13000" data-y="2200" data-scale="1" data-rotate="200">
+      <p>
+        Um elemento com posição static permanece sempre em seu local de origem dentro da página, ou seja, caso sejam utilizadas as propriedades de coordenada elas não serão respeitadas.
+      </p>
+    </div>
+
+    <div id="position6" class="step" data-x="13000" data-y="2500" data-z="1000" data-scale="2" data-rotate="200">
+      <p>
+        Relative
+      </p>
+    </div>
+
+    <div id="position7" class="step" data-x="13000" data-y="2900" data-z="1111" data-scale="1" data-rotate="200">
+      <p>
+        Para que as coordenadas sejam utilizadas basta que o valor relative seja passado. Com isso, o posicionamento será obedecido em relação à posição original do elemento na página. Por exemplo:
+      </p>
+    </div>
+
+    <div id="position8" class="step" data-x="13000" data-y="3000"  data-scale="0.01" data-rotate="200">
+      <pre><code class="small_font">
+      .elemento {
+        position: relative;
+        top: 100px;
+        left: 50px;
+      }
+      </code></pre>
+  </div>
+
+    <div id="position9" class="step" data-x="13000" data-y="3400" data-z="1331" data-scale="1" data-rotate="200">
+      <p>
+        O elemento terá acrescentado ao seu topo 100px e 50px acrescentados à esquerda, o que fará com que o elemento seja renderizado mais para baixo e para direita.
+      </p>
+    </div>
+
+    <div id="position10" class="step" data-x="13000" data-y="4000" data-z="2000" data-scale="2" data-rotate="200">
+      <p>
+        Absolute
+      </p>
+    </div>
+
+    <div id="position11" class="step" data-x="13000" data-y="4500" data-z="1701" data-scale="1" data-rotate="200">
+      <p>
+        O valor absolute é um pouco mais complexo. Atua de forma semelhante ao relative, porém, seu posicionamento só utiliza como parâmetro o posicionamento na página caso nenhum elemento que seja seu pai na estrutura do HTML possua algum posicionamento diferente de static.
+      </p>
+    </div>
+
+    <div id="position12" class="step" data-x="13000" data-y="5200" data-z="1702" data-scale="1" data-rotate="200">
+      <p>
+        Caso algum elemento pai possua, por exemplo, position: relative;, o posicionamento do elemento com o valor absolute será determinado com base no posicionamento desse elemento pai.
+      </p>
+    </div>
+
+    <div id="position13" class="step" data-x="13000" data-y="6000" data-z="100" data-scale="2" data-rotate="200">
+      <p>
+        Fixed
+      </p>
+    </div>
+
+    <div id="position14" class="step" data-x="13000" data-y="6300" data-z="130" data-scale="1" data-rotate="210" data-rotate-x="30" data-rotate-y="20">
+      <p>
+        O último valor sempre vai utilizar como referência a porção visual do documento no navegador, e irá manter essa posição mesmo que ocorra alguma rolagem na tela, sendo assim uma propriedade essencial para assegurar que algo precisa ser sempre visto.
+      </p>
+    </div>
+
+   <div class="step slide" data-x="20000" data-y="1500">
+      <q>Mais HTML e CSS</q>
+      <q>Começamos agora com Forms :P</q>
+    </div>
+
+
+    <div id="forms" class="step" data-x="20000" data-y="3000" data-scale="1">
+      <p>
+        Existe um elemento em HTML responsável por capturar os dados inseridos pelo usuário e submeter os mesmos a algum serviço da internet: &lt;form&gt;.
+      </p>
+    </div>
+
+    <div id="forms2" class="step" data-x="20000" data-y="3400" data-scale="1">
+      <p>
+        Os dados são passados para o &lt;form&gt; por meio da tag &lt;input&gt;, que é definida pela propriedade type. Os valores de type podem ser:
+      </p>
+    </div>
+
+    <div id="forms3" class="step" data-x="20000" data-y="3800" data-scale="1">
+        <ul>
+          <li>
+            <i>search</i>: utilizado na captura de dados
+          </li>
+          <li>
+            <i>submit</i>: um botão para submeter os dados
+          </li>
+          <li>
+            <i>image</i>: possui a mesma funcionalidade de submit, porém é possível utilizar a imagem que desejar em vez de um botão.
+          </li>
+        </ul>
+    </div>
+
+    <div id="clear" class="step" data-x="21000" data-y="0000" data-rotate="111" data-scale="2">
+      <p>
+        Float e Clear
+      </p>
+    </div>
+
+    <div id="clear2" class="step" data-x="21000" data-y="0200" data-z="0111" data-rotate="111" data-scale="1">
+        Podemos deslocar elementos ao longo da página os mantendo alinhados da forma que for necessária utilizando
+        <pre>float: left;</pre> ou <pre>float:right;</pre>
+    </div>
+
+
+    <div id="clear4" class="step" data-x="21000" data-y="1300" data-z="0111" data-rotate="111" data-scale="1">
+        o que deslocaria nosso elemento para a direita,
+    </div>
+
+
+    <div id="clear5" class="step" data-x="21000" data-y="-0700" data-z="0111" data-rotate="111" data-scale="1">
+         ou para a esquerda,
+    </div>
+
+
+    <div id="clear6" class="step" data-x="21000" data-y="0200" data-z="0211" data-rotate-x="30" data-rotate-y="100" data-rotate="111" data-scale="0.8">
+        fazendo o mesmo "flutuar".
+    </div>
+
+    <div id="clear7" class="step" data-x="22000" data-y="0200" data-z="0111" data-rotate="111" data-scale="1">
+      Porém, supondo que seja necessário alinhar 2 elementos na parte esquerda da página, o primeiro elemento funcionaria perfeitamente, porém o segundo, mesmo que
+    </div>
+
+    <div id="clear8" class="step" data-x="22000" data-y="0800" data-z="0111" data-rotate="111" data-scale="1">
+      float:left;
+    </div>
+
+    <div id="clear9" class="step" data-x="22000" data-y="1200" data-z="0111" data-rotate="111" data-scale="1">
+      esteja declarado, ficará do lado direito desse elemento. Para resolver esse impasse utilizamos a propriedade clear.
+    </div>
+
+    <div id="clear10" class="step" data-x="22000" data-y="1800" data-z="0111" data-rotate="111" data-rotate-x="11" data-scale="2">
+      Clear
+    </div>
+
+    <div id="clear11" class="step" data-x="22000" data-y="2300" data-z="0111" data-rotate="111" data-rotate-x="11" data-scale="1">
+      Caso um elemento possua o atributo clear: left; definido, estará sendo indicado que nenhum elemento que possua o atributo float é permitido na esquerda desse elemento
+    </div>
+
+    <div id="clear12" class="step" data-x="22000" data-y="3000" data-z="0111" data-rotate="111" data-rotate-x="11" data-scale="1">
+       fazendo com que o elemento que possua clear definido seja renderizado na linha seguinte caso a condição seja verdadeira.
+    </div>
+
+    <div id="clear13" class="step" data-x="22000" data-y="4000" data-z="0111" data-rotate="111" data-rotate-x="11" data-scale="1">
+      Dessa forma, clear só pode receber dois valores: left e right.
+    </div>
+
+    <div id="text" class="step" data-x="24000" data-y="0000" data-z="0200" data-rotate="70" data-rotate-x="22" data-scale="2">
+      Transformando seu Texto
+    </div>
+
+    <div id="text2" class="step" data-x="24000" data-y="0500" data-z="0200" data-rotate="70" data-rotate-x="22" data-scale="5">
+      Letras Grandes,
+    </div>
+
+    <div id="text3" class="step" data-x="24000" data-y="0500" data-z="0200" data-rotate="32" data-rotate-x="22" data-scale="0.01">
+      letras pequenas
+    </div>
+
+    <div id="text4" class="step" data-x="24000" data-y="1000" data-z="0200" data-rotate="70" data-rotate-x="22" data-scale="1">
+      Por meio do CSS podemos transformar e decorar um texto. A propriedade text-transform é responsável por essas mudanças. Seus valores possíveis são:
+    </div>
+
+    <div id="text5" class="step" data-x="24000" data-y="1500" data-z="1000" data-rotate="85" data-rotate-x="22" data-scale="1">
+      <ul>
+        <li>
+          <i> uppercase </i>- Todas as letras ficam em maiúsculo.
+        </li>
+        <li>
+          <i> lowercase </i>- Todas as letras ficam em minúsculo.
+        </li>
+        <li>
+          <i> capitalize </i>- Apenas a primeira letra de cada palavra fica em maiúsculo.
+        </li>
+      </ul>
+    </div>
+
+    <div id="text6" class="step" data-x="24000" data-y="1000" data-z="2200" data-rotate="200" data-rotate-x="52" data-scale="2">
+      Decorando o Texto
+    </div>
+
+    <div id="text7" class="step" data-x="24000" data-y="1500" data-z="2300" data-rotate="200" data-rotate-x="54" data-scale="1">
+      O navegador adiciona algumas decorações para nossos textos, como por exemplo, os links sublinhados. É possível remover tais decorações como no exemplo:
+    </div>
+
+    <div id="text8" class="step" data-x="24000" data-y="1500" data-z="2300" data-rotate="720" data-rotate-x="54" data-scale="0.01">
+      <pre><code>
+      .elemento_sem_decoracao {
+        text-decoration: none;
+      }
+      </code></pre>
+    </div>
+
+    <div id="text9" class="step" data-x="24000" data-y="1500" data-z="2700" data-rotate="-720" data-rotate-x="52" data-scale="1">
+      Além de <i>none</i> é possível passar como valor:
+    </div>
+
+    <div id="text10" class="step" data-x="24000" data-y="1500" data-z="3700" data-rotate="200" data-rotate-x="52" data-scale="1">
+      <ul>
+        <li><i>underline</i> - o padrão dos links sublinhados</li>
+        <li><i>overline</i> - uma linha em cima do texto</li>
+        <li><i>line-through</i> - uma risca no meio do texto </li>
+        <li><i>blink</i> - onde o texto fica piscando</li>
+      </ul>
+    </div>
+
+    <div id="cascate" class="step" data-x="25000" data-y="5000" data-z="100" data-rotate="10" data-rotate-x="52" data-rotate-y="10" data-scale="2">
+      Herdando Propriedades e a Cascata
+    </div>
+
+    <div id="cascate2" class="step" data-x="25000" data-y="2000" data-z="100" data-rotate="10" data-rotate-x="52" data-rotate-y="10" data-scale="1">
+      Algumas propriedades são passadas de pai para filho, em cascata, como por exemplo:
+    </div>
+
+    <div id="cascate3" class="step" data-x="25000" data-y="5500" data-z="11100" data-rotate="10" data-rotate-x="222" data-rotate-y="10" data-scale="0.01">
+      <pre><code class="small_font">
+      &lt;div id="praia_grande"&gt;
+        &lt;h1&gt;Eu moro em Praia Grande&lt;/h1&gt;
+        &lt;h2&gt;Meus amigos viajam para Praia Grande apenas no verão&lt;/h2&gt;
+      &lt;/div&gt;
+
+      #praia_grande {
+        color: red;
+      }
+      </code></pre>
+  </div>
+
+  <div id="cascate4" class="step" data-x="25000" data-y="2500" data-z="100" data-rotate="10" data-rotate-x="52" data-rotate-y="30" data-scale="1">
+    No exemplo, os 2 títulos irão herdar a cor <span style="color:red;">vermelha</span> da &lt;div&gt; pai. Geralmente, as propriedades não herdadas são as que afetam o box do elemento, como <i>width, margin </i>e<i> padding</i>.
+  </div>
+
+  <div id="cascate5" class="step" data-x="25000" data-y="3000" data-z="100" data-rotate="10" data-rotate-x="52" data-rotate-y="30" data-scale="1">
+    Porém, essa situação é contornada caso a propriedade em que a herança seja necessária receba o valor <i>inherit</i>.
+  </div>
+
+  <div id="cascate6" class="step" data-x="25000" data-y="3500" data-z="100" data-rotate="10" data-rotate-x="52" data-rotate-y="30" data-scale="1">
+     Por exemplo, caso um elemento necessite herdar a margem de seu pai, podemos utilizar
+  </div>
+
+  <div id="cascate7" class="step" data-x="25000" data-y="3700" data-z="00" data-rotate="30" data-rotate-x="100" data-rotate-y="30" data-scale="1">
+    margin: inherit;
+  </div>
+
+  <div id="inline_block" class="step" data-x="26000" data-y="0000" data-z="00" data-rotate="130" data-rotate-x="0" data-rotate-y="0" data-scale="2">
+    Display: Inline-Block!
+  </div>
+
+  <div id="inline_block2" class="step" data-x="26000" data-y="0500" data-z="00" data-rotate="130" data-rotate-x="10" data-rotate-y="10" data-scale="1">
+    Algumas vezes iremos precisar modificar a forma como alguns elementos são renderizados, por exemplo, alterando o seu display para <i>inline</i>.
+  </div>
+
+  <div id="inline_block3" class="step" data-x="26000" data-y="1000" data-z="00" data-rotate="130" data-rotate-x="20" data-rotate-y="20" data-scale="1">
+    Porém, algumas propriedades como <i>width</i> e <i>height</i> só funcionam se o elemento for renderizado no formato block.
+  </div>
+
+  <div id="inline_block4" class="step" data-x="26000" data-y="1500" data-z="00" data-rotate="130" data-rotate-x="30" data-rotate-y="30" data-scale="1">
+    E se, em algumas dessas vezes que necessitarmos renderizar, por exemplo, uma &lt;li&gt; como <i>inline</i>, também precisarmos manter tais atributos?
+  </div>
+
+  <div id="inline_block5" class="step" data-x="26000" data-y="2000" data-z="00" data-rotate="500" data-rotate-x="40" data-rotate-y="40" data-scale="1">
+    Para isso o HTML nos fornece a opção
+  </div>
+
+  <div id="inline_block6" class="step" data-x="26000" data-y="2300" data-z="100" data-rotate="500" data-rotate-x="40" data-rotate-y="40" data-scale="1">
+    display: inline-block;
+  </div>
+
+  <div id="inline_block7" class="step" data-x="26000" data-y="3000" data-z="200" data-rotate="500" data-rotate-x="40" data-rotate-y="40" data-scale="1">
+    que manterá o elemento em linha e fará uso das propriedades específicas de um elemento renderizado como block.
+  </div>
+
+  <div id="selector" class="step" data-x="27000" data-y="0000" data-z="1000" data-rotate="0" data-rotate-x="0" data-rotate-y="0" data-scale="2">
+    Seletores CSS
+  </div>
+
+  <div id="selector2" class="step" data-x="27000" data-y="1000" data-z="1000" data-rotate="0" data-rotate-x="0" data-rotate-y="0" data-scale="1">
+    Além dos seletores de classe, id e tag, o CSS possui seletores mais avançados, como:
+  </div>
+
+  <div id="selector3" class="step" data-x="27000" data-y="1500" data-z="1500" data-rotate="45" data-rotate-x="10" data-rotate-y="10" data-scale="1">
+    Seletores de Atributo
+  </div>
+
+  <div id="selector4" class="step" data-x="27000" data-y="1900" data-z="1900" data-rotate="45" data-rotate-x="20" data-rotate-y="20" data-scale="1">
+    <pre>
+    input[value] {
+      color: red;
+    }
+    </pre>
+  </div>
+
+  <div id="selector5" class="step" data-x="27000" data-y="2900" data-z="1900" data-rotate="45" data-rotate-x="20" data-rotate-y="20" data-scale="1">
+    O seletor anterior atua sobre todos os elementos &lt;input&gt; que contenham o atributo "value", alterando sua cor para <span style="color:red;">vermelho</span>. É possível também atuar sobre um valor específico do atributo, como por exemplo
+  </div>
+
+  <div id="selector6" class="step" data-x="27000" data-y="2900" data-z="2200" data-rotate="45" data-rotate-x="50" data-rotate-y="50" data-scale="1">
+    input[type="text"]
+  </div>
+
+  <div id="selector7" class="step" data-x="27000" data-y="3900" data-z="2900" data-rotate="45" data-rotate-x="20" data-rotate-y="20" data-scale="1">
+    <pre>
+    span[class|="informativo"] {
+      color: green;
+    }
+    </pre>
+  </div>
+
+  <div id="selector8" class="step" data-x="27000" data-y="4300" data-z="3300" data-rotate="65" data-rotate-x="40" data-rotate-y="40" data-scale="1">
+    Já esse seletor atua em todas os &lt;span&gt; na qual o atributo class comece com a palavra "informativo" seguido de um hífen e qualquer outro valor logo após, como por exemplo
+  </div>
+
+  <div id="selector9" class="step" data-x="27000" data-y="4300" data-z="3700" data-rotate="65" data-rotate-x="70" data-rotate-y="70" data-scale="1">
+    <span style="color: green;">"informativo-compras"</span> ou <span style="color: green;">"informativo-vendas"</span>.
+  </div>
+
+  <div id="selector10" class="step" data-x="27000" data-y="4900" data-z="4700" data-rotate="65" data-rotate-x="70" data-rotate-y="70" data-scale="1">
+    Também é possível buscar uma palavra em específico apenas, procurando a mesma em todo o conteúdo da tag, como por exemplo
+  </div>
+
+  <div id="selector11" class="step" data-x="27000" data-y="5400" data-z="4900" data-rotate="85" data-rotate-x="70" data-rotate-y="70" data-scale="1">
+    input[value~="efetivadas"]
+  </div>
+
+  <div id="selector12" class="step" data-x="27000" data-y="6400" data-z="4900" data-rotate="85" data-rotate-x="70" data-rotate-y="70" data-scale="2">
+    Seletores CSS3
+  </div>
+
+  <div id="selector13" class="step" data-x="27000" data-y="6600" data-z="5300" data-rotate="95" data-rotate-x="80" data-rotate-y="80" data-scale="1">
+    Utilizando CSS3 podemos fazer uso de outros operadores com sinais parecidos com expressões regulares, como por exemplo:
+  </div>
+
+  <div id="selector14" class="step" data-x="27000" data-y="6600" data-z="5300" data-rotate="595" data-rotate-x="80" data-rotate-y="80" data-scale="0.01">
+    <pre><code class="small_font">
+    /* busca inputs com valor "nome" começando com "cliente" */
+    input[nomeˆ="cliente"]
+
+    /* busca inputs com valor "nome" terminando com "efetivadas" */
+    input[nome$="efetivadas"]
+
+    /* busca inputs com valor "nome" contendo "vendas" em qualquer posição */
+    input[nome*="vendas"]
+    </code></pre>
+  </div>
+
+  <div class="step slide" data-x="30000" data-y="-1500">
+    <q>Suporte HTML5 no Internet Explorer antigo</q>
+  </div>
+
+  <div class="step slide" data-x="30000" data-y="-0500">
+    <img src="images/ie.jpg" alt="IE" width="800"  />
+  </div>
+
+  <div class="step slide" data-x="30000" data-y="500">
+    <img src="images/error.jpg" alt="IE" width="800" />
+  </div>
+
+  <div id="ie" class="step" data-x="30000" data-y="1500" data-z="0000" data-rotate="00" data-rotate-x="30" data-rotate-y="30" data-scale="1">
+    É possível fazer com que a versão 8 do IE seja capaz de lidar com as tags únicas do HTML5. Para isso basta fazer o download de um hack denominado <a href="http://code.google.com/p/html5shiv/">html5shiv</a>.
+  </div>
+
+  <div id="ie2" class="step" data-x="30000" data-y="2000" data-z="0100" data-rotate="50" data-rotate-x="00" data-rotate-y="0" data-scale="1">
+    É possível ainda carregar o código diretamente. Basta adicionar no header da página:
+  </div>
+
+  <div id="ie3" class="step" data-x="30000" data-y="3000" data-z="1000" data-rotate="50" data-rotate-x="50" data-rotate-y="0" data-scale="1">
+    <pre class="small_font">
+      &lt;!--[if lt IE 9]&gt;
+        &lt;script src="//html5shiv.googlecode.com/svn/trunk/html5.js"&gt;&lt;/script&gt;
+      &lt;![endif]--&gt;
+    </pre>
+  </div>
+
+  <div id="end" class="step" data-x="30000" data-y="30000" data-z="30000" data-rotate="2000" data-rotate-x="50" data-rotate-y="0" data-scale="5">
+    <p>
+      <i>The End ~</i>
+    </p>
+  </div>
+
+  <div id="end2" class="step" data-x="28920" data-y="29000" data-z="30000" data-rotate="2000" data-rotate-x="410" data-rotate-y="0" data-scale="4">
+    <p>
+      <img src="images/cs.jpeg" alt="CS" />
+    </p>
+  </div>
+
+
+
+
+
+
+
+
+
+</div>
+
+<!--
+
+    Hint is not related to impress.js in any way.
+
+    But it can show you how to use impress.js features in creative way.
+
+    When the presentation step is shown (selected) its element gets the class of "active" and the body element
+    gets the class based on active step id `impress-on-ID` (where ID is the step's id)... It may not be
+    so clear because of all these "ids" in previous sentence, so for example when the first step (the one with
+    the id of `bored`) is active, body element gets a class of `impress-on-bored`.
+
+    This class is used by this hint below. Check CSS file to see how it's shown with delayed CSS animation when
+    the first step of presentation is visible for a couple of seconds.
+
+    ...
+
+    And when it comes to this piece of JavaScript below ... kids, don't do this at home ;)
+    It's just a quick and dirty workaround to get different hint text for touch devices.
+    In a real world it should be at least placed in separate JS file ... and the touch content should be
+    probably just hidden somewhere in HTML - not hard-coded in the script.
+
+    Just sayin' ;)
+
+-->
+<div class="hint">
+    <p>Use a spacebar or arrow keys to navigate</p>
+</div>
+<script>
+if ("ontouchstart" in document.documentElement) {
+    document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+}
+</script>
+
+<!--
+
+    Last, but not least.
+
+    To make all described above really work, you need to include impress.js in the page.
+    I strongly encourage to minify it first.
+
+    In here I just include full source of the script to make it more readable.
+
+    You also need to call a `impress().init()` function to initialize impress.js presentation.
+    And you should do it in the end of your document. Not only because it's a good practice, but also
+    because it should be done when the whole document is ready.
+    Of course you can wrap it in any kind of "DOM ready" event, but I was too lazy to do so ;)
+
+-->
+<script src="js/impress.js"></script>
+<script>impress().init();</script>
+
+<!--
+
+    The `impress()` function also gives you access to the API that controls the presentation.
+
+    Just store the result of the call:
+
+        var api = impress();
+
+    and you will get three functions you can call:
+
+        `api.init()` - initializes the presentation,
+        `api.next()` - moves to next step of the presentation,
+        `api.prev()` - moves to previous step of the presentation,
+        `api.goto( idx | id | element, [duration] )` - moves the presentation to the step given by its index number
+                id or the DOM element; second parameter can be used to define duration of the transition in ms,
+                but it's optional - if not provided default transition duration for the presentation will be used.
+
+    You can also simply call `impress()` again to get the API, so `impress().next()` is also allowed.
+    Don't worry, it wont initialize the presentation again.
+
+    For some example uses of this API check the last part of the source of impress.js where the API
+    is used in event handlers.
+
+-->
+
+</body>
+</html>
+
+<!--
+
+    Now you know more or less everything you need to build your first impress.js presentation, but before
+    you start...
+
+    Oh, you've already cloned the code from GitHub?
+
+    You have it open in text editor?
+
+    Stop right there!
+
+    That's not how you create awesome presentations. This is only a code. Implementation of the idea that
+    first needs to grow in your mind.
+
+    So if you want to build great presentation take a pencil and piece of paper. And turn off the computer.
+
+    Sketch, draw and write. Brainstorm your ideas on a paper. Try to build a mind-map of what you'd like
+    to present. It will get you closer and closer to the layout you'll build later with impress.js.
+
+    Get back to the code only when you have your presentation ready on a paper. It doesn't make sense to do
+    it earlier, because you'll only waste your time fighting with positioning of useless points.
+
+    If you think I'm crazy, please put your hands on a book called "Presentation Zen". It's all about
+    creating awesome and engaging presentations.
+
+    Think about it. 'Cause impress.js may not help you, if you have nothing interesting to say.
+
+-->
+
+<!--
+
+    Are you still reading this?
+
+    For real?
+
+    I'm impressed! Feel free to let me know that you got that far (I'm @bartaz on Twitter), 'cause I'd like
+    to congratulate you personally :)
+
+    But you don't have to do it now. Take my advice and take some time off. Make yourself a cup of coffee, tea,
+    or anything you like to drink. And raise a glass for me ;)
+
+    Cheers!
+
+-->
+
