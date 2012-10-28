@@ -1,1 +1,1 @@
-Slideshare for HTML and CSS work-study gruop :)
+Slideshare for HTML and CSS work-study group :)
